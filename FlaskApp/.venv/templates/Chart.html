@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <title>Dashboard</title>
+    <style>
+      .header {
+                    padding: 20px;
+                    text-align: center;
+                    background: white;
+                    }
+
+            .header h1 {
+                    font-size: 30px;
+                    }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      
+      li {
+        float: left;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+      
+      .active {
+        background-color: #04AA6D;
+      }
+      </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawBarchartforvolume);
+
+      function drawBarchartforvolume() {
+        var data = new google.visualization.arrayToDataTable([
+        {% for key, value in data.items() %}
+			{% if value is string %}
+				['{{ key }}', '{{ value }}'],
+			{% else %}
+				['{{ key }}', {{ value }}],
+			{% endif %}
+		{% endfor %}
+          
+        ]);
+
+        var options = {
+          width: 400,
+          legend: { position: 'none' },
+          chart: {title: 'Trending Crytpyo Currencies', position: 'center'},
+          bar: { groupWidth: "70%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('VolumeChart'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['table']});
+        google.charts.setOnLoadCallback(drawChartforProfit);
+
+        function drawChartforProfit() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Symbol');
+            data.addColumn('number', 'Profit in Percentage');
+            data.addRows([
+        {% for key, value in data2.items() %}
+			['{{ key }}', {v: {{ value }}}],
+		{% endfor %}
+          ]);
+  
+          var table = new google.visualization.Table(document.getElementById('Profitchart'));
+          table.draw(data, {showRowNumber: false, width: '70%', height: '70%'});
+        }
+    </script>
+
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChartforLoss);
+        function drawChartforLoss() {
+          var data = google.visualization.arrayToDataTable([
+        {% for key, value in data3.items() %}
+			{% if value is string %}
+				['{{ key }}', '{{ value }}'],
+			{% else %}
+				['{{ key }}', {{ value }}],
+			{% endif %}
+		{% endfor %}
+          ]);
+  
+          var options = {
+            title: 'Loss',
+            pieHole: 0.4,
+          };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('Losschart'));
+          chart.draw(data, options);
+        }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>BitCoins Data</h1>
+    </div>
+    <ul>
+      <li><a href="http://localhost:5000/">Home</a></li>
+      <li><a class="active" href="http://localhost:5000/Dashboard">Dashboard</a></li>
+      <li><a href="http://localhost:5000/getdata">Get All Data</a></li>
+      <li><a href="http://localhost:5000/getDataById/02">Get By Id</a></li>
+    </ul>
+    <div id="VolumeChart" style="width: 400px; height: 400px; position: absolute; left: 0px; padding: 10px;"></div>
+    <div id="Profitchart" style="width: 500px; height: 500px; position: absolute; left: 600px; padding: 10px;"></div>
+    <div id="Losschart" style="width: 500px; height: 500px; position: absolute; left: 1100px; padding: 10px;"></div>
+  </body>
+</html>
