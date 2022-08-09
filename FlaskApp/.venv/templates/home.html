@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Home</title>
+        <style>
+            .header {
+                    padding: 20px;
+                    text-align: center;
+                    background: white;
+                    }
+
+            .header h1 {
+                    font-size: 30px;
+                    }
+            .header h2 {
+            font-size: 30px;
+            }
+            ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #333;
+            }
+            
+            li {
+              float: left;
+            }
+            
+            li a {
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+            }
+            
+            li a:hover:not(.active) {
+              background-color: #111;
+            }
+            
+            .active {
+              background-color: #04AA6D;
+            }
+
+            p {
+                text-indent: 50px;
+                text-align: justify;
+                letter-spacing: 3px;
+              }
+            </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Crypto Currencies listed on WazirX </h1>
+          </div>
+        <ul>
+            <li><a class="active" href="http://35.226.15.254:5000/">Home</a></li>
+            <li><a href="http://35.226.15.254:5000/Dashboard">Dashboard</a></li>
+            <li><a href="http://35.226.15.254:5000/getdata">Get All Data</a></li>
+            <li><a href="http://35.226.15.254:5000/getDataById/02">Get By Id</a></li>
+            <li><a href="http://35.226.15.254:5000/getRangeofItems/5">Get Range Of Item</a></li>
+          </ul>
+          <div class="header">
+            <h2>Project Summary</h2>
+            <p>Our dataset includes all information on the crypto-currencies listed on the WazirX exchange, including information about the opening and closing prices of various crypto coins as well as the volume exchanged over the span of 24 hours. Additionally, we have bid and ask prices, and the data is in INR. There is  more than 450 currencies data in our chosen dataset.</p>
+          </div>
+          <div class="header">
+            <h2>Our Analysis</h2>
+              <p style="text-align: center;">What are the most popular crypto-currencies right now?</p>
+              <p style="text-align: center;">Which coins have been the most profitable over the last 24 hours?</p>
+              <p style="text-align: center;">Which coins suffered a significant loss in a day?</p>
+            </ul>
+          </div>
+    </body>
+</html>
